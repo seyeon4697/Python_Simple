@@ -17,7 +17,6 @@ list_a = [1, 2, 3]
 list_b = []
 list_c = ["chosun", 5, 3.14, [1, 2, 3]]
 
-
 # packing and unpacking
 list_d = ["A", "B", "C"]  # packing
 a, b, c = list_d #unpacking
@@ -66,5 +65,121 @@ print(a)
 print(b)
 print(c)
 
+# 2. 튜플(Tuple) ex) 기차
+#  - List와 대부분 동일
+#  - 시퀀스 자료형(정렬 불가능)
+#  - immutable(생성된 후 변경 불가능)
+#  - index 사용(Slicing 가능)
+#  - packing과 unpacking 가능
+#  - () 사용(생략 가능)
+#  - 직접 tuple을 생성하는 경우 X
+#  -> 파이썬에서 결과값을 받을 때 Tuple로 제공
+
+print("="*200)
+a = [1, 2, 3]   # List
+b = (1, 2, 3)   # Tuple
+c = 1, 2, 3     # Tuple(괄호 생략 가능)
+
+a[0] = 99
+print(a)
+# b[0] = 99
+# print(b)  #Tuple은 값 변경 불가능
+
+# 튜플 원소가 1개인 경우 -> 원소 쓰고 컴마 찍기.
+a = (1, 2, 3)   # tuple
+b = (1, 2, 3)   # tuple
+c = (1)         # tuple
+d = 1           # int
+e = 1,          # tuple
+print(type(b))
+print(type(d))
+print(type(e))
+
+print("="*200)
+# 문제: a랑 b랑 교환하는 코드 작성
+a = 5
+b = 8
+print(a, b)
+# (Java, C 버전)
+# temp = a
+# a = b
+# b = temp
+# Python 버전
+a, b = b, a
+print(a, b)
+
+print("="*200)
+# 3. 세트(Set) ex) 복주머니
+#  - 수학의 집합 개념
+#  - 순서 없음(index 없음, 정렬 불가능)
+#  - 중복값을 허용하지 않음(*중요*)
+#  - {} 중괄호 사용
+#  - 멤버함수: union(), intersection(), difference() 등등
+set_a = {1, 2, 3}
+set_b = {1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 5}
+print(set_b)  #  중복값을 다 없앤 후 {1, 2, 3, 4, 5}를 출력.
+
+# 중복값 제거 할용 방법
+# : List a의 중복값을 제거
+a = ["A", "A", "B", "B", "C", "C", "D", "E"]  # List type
+# a = set(a)  # ()안의 값을 set type으로 변환
+# a = list(a)  # ()안의 값을 List type으로 변환
+# List(a) -> set(중복값 제거, set(a)) -> List(list(set(a)))
+a = list(set(a))
+print(a)
+print(type(a))
+
+print("="*200)
+# 4. 딕트(dict) ex) 복주머니
+#  - 순서가 없음(인덱스 없음, 정렬 불가능)
+#  - {key : value} 형태로 사용 -> key, value 1 pair
+#  - key는 중복 불가, value 중복 가능
+#  - key를 통해서만 value에 접근 가능
+#  - 멤버함수: update(), get(), keys(), values(), items()
+
+# 외부에서 데이터를 받아올 때 대부분 JSON 형식으로 전달
+#   - JSON == DICT(동일)
+dict_a = {"korea": "Seoul",
+          "Canada": "Ottawa",
+          "USA": "Washington D.C"}
+print(dict_a)
+
+# update(): dict와 dict 병합
+a = {"a": 1,
+     "b": 2}
+b =  {"b": 3,
+      "c": 5}
+a.update(b)  # 병합 시 중복키가 있는 경우 입력값이 우선(기준값 우선 X)
+print(a)
+
+# pop () : dict 원소를 key를 통해서 삭제
+c = a.pop("a")
+print(a)
+print(c)  # {"a": 1} 삭제 된 value(key X)
+
+# in() : ()안에 key값이 존재하는지 확인
+# print("c": in a) -> Ture
+# print("f": in a) -> False
+
+# get() : 값 접근
+# list, tuple, dict 접근 -> 컬렉션[index or key] ex) a[2]
+print(a["c"])
+# print(a["f"])   # key가 없으면 error 발생
+print(a.get("f")) # -> Key가 없으면 None 출력(Error X)
+
+# keys(), values(), items()
+print(a.keys())     # Key만 추출
+print(a.values())   # Value만 추출
+print(a.items())    # (Key, Value) 추출
+
+print(list(a.keys()))   # 활용 방법
+
+# clear() : dict 초기화
+print(a)
+a.clear()
+print(a)
+
+e = {}  # 그냥 중괄호만 쓰면 dict타입으로 인식.(set X)
+print(type(e))
 
 
