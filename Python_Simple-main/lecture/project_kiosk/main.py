@@ -92,7 +92,7 @@ price_save = [] # 고객 주문 가격 기록
 
             print(f"MSG: 주문하신 메뉴는 {len(menu_save)}개로 총 결제금액은 {total_price}원 입니다.")
             print("MSG: 이용해주셔서 감사합니다.")
-            
+
 
 
 
