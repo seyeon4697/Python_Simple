@@ -1,93 +1,98 @@
-# 웹 크롤링(Web Crawuling)
-# - 웹 사이트에서 원하는 데이터를 수집!
+# WebCrawling(웹 크롤링)
+# - 웹 페이지에서 원하는 데이터를 수집하는 기술
+# - 데이터가 필요한 작업을 해야 하는데 원하는 데이터가 없는 경우 (제공 X, 다운 X)
+# -> 웹크롤링을 사용해서 직접 데이터를 수집
+# - 직업: 웹 크롤러(전문)
+# - 직업: 데이터엔지니어(웹 크롤링 + @)
 
-# ** 웹 크롤링을 사용하는 이유?
-#  ■ 어떤 데이터 필요!
-#   - 기업에서 제공?
-#   - 정부, 관공서 제공?
-#   - 자체적으로 보유?
+# - 웹 크롤링 + 스케줄링 -> 자동화
 
-# ** 외부 라이브러리(다운로드 + imoport)
-#    1. BeautifulSoup4
-#    2. Requests
-#    3. Selenium
+# 웹 개발에 필요한 외부 라이브러리(다운로드 + import)
+#   1. BeautifulSoup4
+#   2. Requests
+#   3. Selenium
 
-#  ** 라이브러리 조합
-#    1.정적 페이지(Reqyests + BeautifulSoup4)
-#    2.동적 페이지(Selenium + BeautifulSoup4)
+# 웹 페이지
+#   - 정적 페이지(Requests + bs4)
+#   - 동적 페이지(Selenium + bs4)
 
-#  ** 웹 프로그래밍 기초
-#   - 프론트엔드 개발자: 화면(View)단 개발
-#   - 백엔드 개발자:    서비스와 DB 개발
-#   - 풀스택개발자:     프론트엔드 + 백엔드
+# Anaconda Prompt
+# conda env list -> basic 확인
+# 없으면 : conda create -n basic python=3.8
+# conda activate basic
+# pip install requests
+# pip install selenium
+# pip install beautifulsoup4
 
-# ** NVC 패턴
-#  1.VIEW: 사용자 화면 구현
-#  2.CONTROLLER: 컨트롤러 및 서비스 구현
-#  3.MODEL: DB 구현
-
-# ** VIEW단(웹 페이지 디자인) - 웹 표준
-#  1.HTML: 프레임 구현(뼈대)
-#  2.CSS:  디자인(색상, 굵기, 크기, 회전, 등등) 구현
-#  3.Javascript: 동적인 기능 구현
-
-# ** HTML
-#  - <tag></tag> 구현
-#  - tag 종류: div, span, p, a, h4, ...
-
-# 예시
-# <div>
-#     <span class="t2">
-#         <span id="t1"></span>
-#     </span>
-#     <span>
-#         <h4></h4>
-#     </span>
-# </div>
-
-# ** 선택자
-#  1.자식 선택자: div > span
-#  2.자손 선택자: div span
-#  3.아이디 선택자: #t1(유니크 1개)
-#  4.클래스 선택자: .t2(복수개 선택 가능)
-
-# ** 개발환경 구축
-#    1.Anaconda prompt
-#      > conda env list : 가상환경 목록 보기
-#      > conda create -n basic python=3.8
-#      > conda activate simple : simple 가상환경 생성(python 버전 3.8)
-#      > pip install beautifulsoup4: 라이브러리 설치
-#      > pip install requests
-#      > pip install selenium
-#      > pip list : 설치 된 라이브러리 목록 확인
 import requests
 import selenium
 from bs4 import BeautifulSoup
 
-# 데이터 수집을 위한 URL 주소
-url = "https://v.daum.net/v/20231101163231654"
+# 웹 프로그래밍 기초(속성)
+# - 프론트 엔드: 사용자 화면 개발
+# - 백 엔드: 서비스과 DB개발
+# - 풀 스택: 프론트 엔드 + 백 엔드
 
-# 1.URL 접속해서 전체 소스코드 가져오기
+# MVC 패턴
+#   - VIEW(사용자 화면)
+#   - CONTROLLER
+#   - MODEL(데이터베이스: 저장)
+
+# 웹 페이지 화면 구현
+#   - 웹 표준: HTML, CSS, Javascript
+# 1. HTML: 프레임 구현
+# 2. CSS: 디자인(색상, 크기, 모양 등등)
+# 3. Javascript: 동적 기능
+
+# HTML 속성
+# - <tag></tag> 구현
+# - tag 종류: div, span, a, h4, etc...
+# - tag 종속 관계
+#   <div>
+#       <span>
+#           <span></span>
+#       </span>
+#       <span></span>
+#   </div>
+#   div: 부모
+#    ㄴ span: 자식
+#   종속관계: 부모자식 (div > span: div태그의 자식 태그인 span) 꺽쇠 있으면 자기 바로 하위관계(자식)만 가져옴
+#            자손(div span: div태그 안에 있는 모든 span) 스페이스바로 되어있으면 모든 종속관계(자손) 가져옴
+
+# 선택자
+#   1. ID(#): 유일한 선택자
+#   2. CLASS(.): 복수 선택자
+
+import requests
+from bs4 import BeautifulSoup
+# 자동완성 Ctrl + Space
+url = "https://v.daum.net/v/20231101144647344"  # 수집하고 싶은 웹사이트 주소
+
+# 1. URL에 접속해서 전체 소스코드 가져오기!
 result = requests.get(url)
-# status_code: 200(성공), 400번대 또는 500번대(오류)
+# status_code: 200(성공)
+#            : 400번대, 500번대 오류
+# print(result)
+# print(result.text)
 
-# 2.전체코드(requests) -> BeautifulSoup4 전달
-doc = BeautifulSoup(result.text,"html.parser")
+# 2. 전체소스코드(requests) -> bs4
+doc = BeautifulSoup(result.text, "html.parser")
 
-# 3.원하는 정보 수집
-#  - select() -> 결과(List Type)
-title = doc.select("h3,tit_viiew")[0].get_text
+# 3. 원하는 정보 수집
+reg_date = doc.select("span.num_date")[0].get_text()    #get_text()쓰려면 무조건 리스트 벗겨야 함([0]붙이기)
+print(f"날짜: {reg_date}")
+
+title = doc.select("h3.tit_view")[0].get_text()
+# select() -> 결과: List Type
 print(f"제목: {title}")
 
-# Tag이름으로만 SELECT 금지!
-#  1. 선택자
-#  2. 상위 관계(자식, 자손)
-content_list = doc.select("div.article_view_p")
-
+# 경고: Tag 이름으로는 절대 수집 X (태그가 있는 모든 걸 다 가져오기 때문.)
+content_list = doc.select("div.article_view p")
+# content_list = ["<p>본문1</p>", "<p>본문2</p>", "<p>본문3</p>", "<p>본문4</p>",]
 content = ""
-for p in content_list:
-   content += p.get_text()
-
-print(f"본문: {content}")
-
-숙제: 날짜, 정보 수집하기
+# ex) p = "<p>본문1</p>"
+#get_text()는 "<p>본문1</p>"에서 태그를 지운 "본문1"
+for p in content_list:          #       content = content + p.get_text()
+    content += p.get_text()     # 반복1: content = "" + "본문1"
+print(f"본문: {content}")        # 반복2: content = "본문1" + "본문2"
+                                # 반복3: content = "본문1본문2" + "본문3"
