@@ -17,9 +17,9 @@
 #   - 동적 페이지(Selenium + bs4)
 
 # Anaconda Prompt
-# conda env list -> basic 확인
-# 없으면 : conda create -n basic python=3.8
-# conda activate basic
+# conda env list -> simple 확인
+# 없으면 : conda create -n simple python=3.8
+# conda activate simple
 # pip install requests
 # pip install selenium
 # pip install beautifulsoup4
