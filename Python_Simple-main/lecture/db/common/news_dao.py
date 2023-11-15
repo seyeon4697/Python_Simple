@@ -1,15 +1,15 @@
 # DAO: Database Access Object
-#   - 데이터 작업(CRUD)을 하는 객체
+#  - 데이터 작업(CRUD)을 하는 객체
+#  회원 => member_dao
+#  로그인 => login_dao
+#  뉴스 => news_dao
+#  상품 => product_dao
 
-# 예시)
-# 회원 -> member_dao
-#           ㄴ 회원가입, 회원수정, 회원조회, 회원검색, 회원삭제
-# 로그인 -> login_dao
-#            ㄴ 로그인, 로그아웃, ID 찾기, PW 찾기
+# 뉴스(제목, 본문, 날짜, URL) 저장
 
-from db.common.connection imort conn_mongodb
 
-# 뉴스(제목, 본문, 날짜) 저장
-def add_news(data):
-   conn = conn_mongodb()  #1. Connection
-   conn.insert_one(data)  # 2. DB에 저장
+from common.connection import conn_mongodb
+
+def add_news():
+    conn = conn_mongodb()  # 1.connection
+    conn.insert_one(data)  # 2.DB에 저장

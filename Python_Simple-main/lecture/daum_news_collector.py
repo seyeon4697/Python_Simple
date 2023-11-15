@@ -17,7 +17,6 @@ import requests     # 전체 소스코드 가져오기
 from bs4 import BeautifulSoup   # 원하는 정보 SELECT
 from service.service_news import get_news
 
-
 news_category ={
     "사회" :  "society",
     "정치" :  "politics",
@@ -69,7 +68,7 @@ while True:
        for url in url_list:
             count += 1
             print(f"{count}번", "="*100)
-             get_news(): 기사 제목, 본문, 날짜 수집
+             get_news(): # 기사 제목, 본문, 날짜 수집
             get_news(url["href"])
 
 
