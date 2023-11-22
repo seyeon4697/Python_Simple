@@ -108,14 +108,5 @@ for item in review_list:
         #print(f"등록시간: {review_date}")
         # 4) 계산된 등록일자 날짜 포맷 변경(다음 영화 리뷰 날짜 포맷)
         review_date = review_date.strftime("%Y. %m. %d. %H:%M")
-
-
-
-
-
-
-
-
-
     print(f"    - 날짜: {review_date}")
 
