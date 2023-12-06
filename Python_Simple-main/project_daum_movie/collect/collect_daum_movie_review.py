@@ -28,6 +28,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
+
 def review_collector(movie_code):
     # 1.Selenium 전용 웹 브라우저 구동
     options = Options()
@@ -129,4 +130,8 @@ def review_collector(movie_code):
             "reg_date": review_date
         }
         add_review(data)
+
+
+
+
 
